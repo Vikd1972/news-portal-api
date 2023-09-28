@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  db:
+    container_name: new_project__postgres_db
+    image: postgres:13.3
+    ports:
+      - "4050:5432"
+    volumes:
+      - ./backups:/usr/src/app
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: new_project__LOCAL
+      PGDATA: /var/lib/postgresql/data/11-5
