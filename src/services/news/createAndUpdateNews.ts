@@ -26,6 +26,7 @@ const createAndUpdateNews = async (props: PropsType) => {
   const newNews: NewsEntity = {
     ...news,
     title: props.data.title && props.data.title,
+    content: props.data.content && props.data.content,
     dateOfPublication: props.data.dateOfPublication && new Date(props.data.dateOfPublication),
     topics: props.data.topics && topics,
     user: props.user,
