@@ -9,6 +9,9 @@ const getNewsList: ControllerType = async (req, res) => {
       user: true,
       topics: true,
     },
+    order: {
+      createdAt: 'DESC',
+    },
   });
 
   res.status(HTTP_STATUS_CODES.OK).json(res.createResponseData(listResponse, { meta }));
