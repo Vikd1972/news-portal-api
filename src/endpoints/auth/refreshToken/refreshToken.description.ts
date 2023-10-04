@@ -31,7 +31,6 @@ type ResponseData = ResponseDataType<{
   //
 }>
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ControllerType = RequestHandler<RequestParams, ResponseData, RequestBody, RequestQuery>
 
 dataBuilder.setSwaggerResponses([...isAuth.swaggerErrors, {

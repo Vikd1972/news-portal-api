@@ -19,7 +19,7 @@ class RequestParams {
   //
 }
 
-type ResponseData = ResponseDataType<NewsEntity[], FindAndCountMetaType>
+type ResponseData = ResponseDataType<NewsEntity[]>
 
 export type ControllerType = RequestHandler<RequestParams, ResponseData, RequestBody, RequestQuery>
 

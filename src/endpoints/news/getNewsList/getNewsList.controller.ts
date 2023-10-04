@@ -4,17 +4,17 @@ import { ControllerType } from './getNewsList.description';
 import db from '../../../db';
 
 const getNewsList: ControllerType = async (req, res) => {
-  const [listResponse, meta] = await db.news.findAndCount({
-    relations: {
-      user: true,
-      topics: true,
-    },
-    order: {
-      createdAt: 'DESC',
-    },
-  });
+  const startDate = new Date();
 
-  res.status(HTTP_STATUS_CODES.OK).json(res.createResponseData(listResponse, { meta }));
+  const news = await db.news
+    .createQueryBuilder('news')
+    .leftJoinAndSelect('news.user', 'user')
+    .leftJoinAndSelect('news.topics', 'topics')
+    .where('news.dateOfPublication <= :startDate', { startDate })
+    .orderBy('news.dateOfPublication', 'DESC')
+    .getMany();
+
+  res.status(HTTP_STATUS_CODES.OK).json(res.createResponseData(news));
 };
 
 export default getNewsList;
